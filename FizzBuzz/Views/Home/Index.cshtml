@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@using FizzBuzz.Controllers
+@model FizzBuzzModel
+
+    <h1 class="display-4">Welcome to FizzBuzz Application</h1>
+    @using (Html.BeginForm("Index", "Home"))
+    {
+        <div class="form-group">
+            @Html.LabelFor(x => x.InputValues)
+            @Html.TextBoxFor(x => x.InputValues, null, new {@class= "form-control col-6" })
+            <small id="emailHelp" class="form-text text-muted">Please enter comma separated values.</small>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="row"> @Html.ValidationSummary(false, null, new {@class="text-danger"})</div>
+    }
+    
+    @if (Model.Result != null)
+    {
+        <table class="table table-striped">
+        @foreach (var item in Model.Result)
+        {
+            <tr>
+        <td>@item</td>
+            </tr>
+                }
+        </table>
+    }
+
